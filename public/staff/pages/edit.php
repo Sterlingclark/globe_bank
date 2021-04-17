@@ -20,8 +20,11 @@ if(is_post_request()) {
   $page['content'] = $_POST['content'] ?? '';
 
   $result = update_page($page);
+  if($result === true) {
   redirect_to(url_for('/staff/pages/show.php?id=' . $id));
-
+  } else {
+    $errors = $result;
+  }
 } else {
 
   $page = find_page_by_id($id);
